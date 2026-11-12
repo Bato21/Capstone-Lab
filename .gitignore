@@ -1,0 +1,12 @@
+# Released course data: not redistributed (public repo). See Hito1/README.md for location and SHA-256.
+base_NextLap/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# Submission archives (attached to the release / Canvas, not versioned)
+*.zip
