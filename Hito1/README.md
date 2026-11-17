@@ -38,3 +38,5 @@ The script uses the supplied `nextlap_reference_v1.py` (`make_model`) and is ada
 ## Submission
 
 Repository: https://github.com/Bato21/Capstone-Lab · The exact submitted commit is given in the Canvas submission text and in the GitHub release `Hito1`.
+
+`HITO1.md` and `DECISION_LOG.md` were revised on 17 November 2026 after the instructor feedback (documentation only: no code, output or number changed). The graded version remains the `Hito1` tag and release.

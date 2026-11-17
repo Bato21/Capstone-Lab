@@ -1,0 +1,16 @@
+season,round,event_name,event_date,driver,driver_number,lap_number,lap_time_s,end_time_s,stint,compound,tyre_life,team,track_status,is_accurate,pit_in,pit_out,deleted,pair_id_inspected,role
+2026,9,British Grand Prix,2026-07-05,ALB,23,4.0,96.46,3807.808,2.0,HARD,3.0,Williams,1,True,False,False,False,2026-R9-23-L7,history
+2026,9,British Grand Prix,2026-07-05,ALB,23,5.0,96.299,3904.107,2.0,HARD,4.0,Williams,1,True,False,False,False,2026-R9-23-L7,history
+2026,9,British Grand Prix,2026-07-05,ALB,23,6.0,98.07,4002.177,2.0,HARD,5.0,Williams,1,True,False,False,False,2026-R9-23-L7,history
+2026,9,British Grand Prix,2026-07-05,ALB,23,7.0,105.128,4107.305,2.0,HARD,6.0,Williams,1,True,False,False,False,2026-R9-23-L7,t
+2026,9,British Grand Prix,2026-07-05,ALB,23,8.0,97.882,4205.187,2.0,HARD,7.0,Williams,1,True,False,False,False,2026-R9-23-L7,"t+1 (target, not an input)"
+2026,9,British Grand Prix,2026-07-05,PIA,81,1.0,105.476,3445.274,1.0,MEDIUM,1.0,McLaren,12,False,False,False,False,2026-R9-81-L4,history
+2026,9,British Grand Prix,2026-07-05,PIA,81,2.0,120.964,3566.238,1.0,MEDIUM,2.0,McLaren,12,False,True,False,False,2026-R9-81-L4,history
+2026,9,British Grand Prix,2026-07-05,PIA,81,3.0,127.215,3693.453,2.0,HARD,1.0,McLaren,1,False,False,True,False,2026-R9-81-L4,history
+2026,9,British Grand Prix,2026-07-05,PIA,81,4.0,94.363,3787.816,2.0,HARD,2.0,McLaren,1,True,False,False,False,2026-R9-81-L4,t
+2026,9,British Grand Prix,2026-07-05,PIA,81,5.0,94.721,3882.537,2.0,HARD,3.0,McLaren,1,True,False,False,False,2026-R9-81-L4,"t+1 (target, not an input)"
+2026,9,British Grand Prix,2026-07-05,ALB,23,3.0,95.816,3711.348,2.0,HARD,2.0,Williams,1,True,False,False,False,2026-R9-23-L6,history
+2026,9,British Grand Prix,2026-07-05,ALB,23,4.0,96.46,3807.808,2.0,HARD,3.0,Williams,1,True,False,False,False,2026-R9-23-L6,history
+2026,9,British Grand Prix,2026-07-05,ALB,23,5.0,96.299,3904.107,2.0,HARD,4.0,Williams,1,True,False,False,False,2026-R9-23-L6,history
+2026,9,British Grand Prix,2026-07-05,ALB,23,6.0,98.07,4002.177,2.0,HARD,5.0,Williams,1,True,False,False,False,2026-R9-23-L6,t
+2026,9,British Grand Prix,2026-07-05,ALB,23,7.0,105.128,4107.305,2.0,HARD,6.0,Williams,1,True,False,False,False,2026-R9-23-L6,"t+1 (target, not an input)"

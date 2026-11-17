@@ -1,0 +1,16 @@
+original_input,input_value,shap_contribution_s,model,pair_id
+recent_mean_s,99.83233333333334,8.182646835909795,B_candidate,2026-R9-23-L7
+current_lap_s,105.128,6.667967520498191,B_candidate,2026-R9-23-L7
+recent_std_s,4.670885818914148,-2.4670526153484316,B_candidate,2026-R9-23-L7
+current_compound,HARD,0.04252546854903217,B_candidate,2026-R9-23-L7
+current_lap_number,7.0,-0.03148249756442531,B_candidate,2026-R9-23-L7
+short_history,0,0.030761528739610907,B_candidate,2026-R9-23-L7
+current_team,Williams,-0.026774485459471312,B_candidate,2026-R9-23-L7
+current_tyre_life,6.0,-0.012206162874016083,B_candidate,2026-R9-23-L7
+BASE VALUE (mean training prediction),,86.7343023215523,B_candidate,2026-R9-23-L7
+SUM OF CONTRIBUTIONS,,12.386385592450285,B_candidate,2026-R9-23-L7
+BASE + SUM (reconstructed prediction),,99.12068791400259,B_candidate,2026-R9-23-L7
+MODEL PREDICTION,,99.12068791400259,B_candidate,2026-R9-23-L7
+RECONSTRUCTION ERROR,,0.0,B_candidate,2026-R9-23-L7
+OBSERVED next_lap_s,,97.882,B_candidate,2026-R9-23-L7
+ABSOLUTE ERROR |observed - prediction|,,1.2386879140025826,B_candidate,2026-R9-23-L7

@@ -1,0 +1,8 @@
+example_pair_id,lap_number,role,lap_time_s,end_time_s,stint,track_status,is_accurate,pit_in,pit_out,deleted,clean_at_own_end,why_not_clean,in_window_laps_t-2..t,used_by_recent_std_s,used_by_last_3_clean_laps
+2026-R8-1-L28,23,,72.148,5138.499,2,1,True,False,False,False,True,,False,False,True
+2026-R8-1-L28,24,,78.463,5216.962,2,126,False,False,False,False,False,"not accurate, track_status != 1",False,False,False
+2026-R8-1-L28,25,,96.995,5313.957,2,6,False,False,False,False,False,"not accurate, track_status != 1",False,False,False
+2026-R8-1-L28,26,,84.972,5398.929,2,671,False,False,False,False,False,"not accurate, track_status != 1",True,False,False
+2026-R8-1-L28,27,,71.773,5470.702,2,1,True,False,False,False,True,,True,True,True
+2026-R8-1-L28,28,t,71.568,5542.27,2,1,True,False,False,False,True,,True,True,True
+2026-R8-1-L28,29,"t+1 (target, never used)",71.843,5614.113,2,1,True,False,False,False,True,,False,False,False

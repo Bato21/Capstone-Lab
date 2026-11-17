@@ -1,0 +1,197 @@
+{
+  "command": "python run_hito2.py (from Hito2/)",
+  "seed": 414,
+  "test_used": false,
+  "train_rows": 5772,
+  "validation_rows": 1808,
+  "train_rounds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "validation_rounds": [
+    8,
+    9
+  ],
+  "validation_pair_id_sha256": "f453a98dc906904cba7307f7e25b67fbd9c9087df0a92a87477cf63422b76a57",
+  "matches_hito1_hash": true,
+  "feature": {
+    "name": "recent_std_s",
+    "window_laps": 3,
+    "min_clean_laps": 2,
+    "ddof": 1,
+    "grouping": "season, round, driver_number, stint",
+    "timeline": "original snapshots before clean-pair filter",
+    "window_convention": "last 3 laps of the stint (t-2..t); non-clean laps left out, not replaced by earlier clean laps (same as recent_mean_s)",
+    "missing_rule": "NaN when < 2 clean laps; filled by train-fitted median imputer; short_history = 1",
+    "train_fill_value_s": 0.25794829914835293
+  },
+  "runs": {
+    "A_OLS_reference": {
+      "role": "OLS reference",
+      "family": "OLS (make_model)",
+      "numeric": [
+        "current_lap_s",
+        "recent_mean_s",
+        "current_lap_number",
+        "current_tyre_life"
+      ],
+      "categorical": [
+        "current_compound",
+        "current_team"
+      ]
+    },
+    "B_candidate": {
+      "role": "candidate",
+      "family": "OLS (make_model)",
+      "numeric": [
+        "current_lap_s",
+        "recent_mean_s",
+        "current_lap_number",
+        "current_tyre_life",
+        "recent_std_s",
+        "short_history"
+      ],
+      "categorical": [
+        "current_compound",
+        "current_team"
+      ]
+    },
+    "C_matched_control": {
+      "role": "matched control",
+      "family": "OLS (make_model)",
+      "numeric": [
+        "current_lap_s",
+        "recent_mean_s",
+        "current_lap_number",
+        "current_tyre_life",
+        "short_history"
+      ],
+      "categorical": [
+        "current_compound",
+        "current_team"
+      ]
+    },
+    "D_followup_no_indicator": {
+      "role": "follow-up candidate (control = A)",
+      "family": "OLS (make_model)",
+      "numeric": [
+        "current_lap_s",
+        "recent_mean_s",
+        "current_lap_number",
+        "current_tyre_life",
+        "recent_std_s"
+      ],
+      "categorical": [
+        "current_compound",
+        "current_team"
+      ]
+    }
+  },
+  "results": {
+    "MAE_s": {
+      "A_OLS_reference|all_validation": 0.3867069503640436,
+      "A_OLS_reference|R8": 0.3735705571218996,
+      "A_OLS_reference|R9": 0.4055794506283637,
+      "B_candidate|all_validation": 0.3697281814561388,
+      "B_candidate|R8": 0.3587927157890282,
+      "B_candidate|R9": 0.385438702212392,
+      "C_matched_control|all_validation": 0.38766895823723846,
+      "C_matched_control|R8": 0.37162824215439316,
+      "C_matched_control|R9": 0.41071397622148803,
+      "D_followup_no_indicator|all_validation": 0.3652230305705967,
+      "D_followup_no_indicator|R8": 0.35760385181667803,
+      "D_followup_no_indicator|R9": 0.37616918225749335
+    },
+    "C_minus_B_s": {
+      "all": 0.017940776781099677,
+      "R8": 0.012835526365364947,
+      "R9": 0.025275274009096016
+    },
+    "B_minus_A_s": -0.01697876890790484,
+    "hito1_rule_supported": true,
+    "followup_D": {
+      "A_minus_D_s": {
+        "all_validation": 0.021483919793446937,
+        "R8": 0.015966705305221596,
+        "R9": 0.02941026837087035,
+        "short history": -0.02037483923183292,
+        "full history": 0.025215905537869454
+      },
+      "predeclared_rule_passed": false
+    },
+    "cluster_bootstrap": [
+      {
+        "comparison": "C_matched_control - B_candidate",
+        "clusters (driver-race stints)": 112,
+        "replicates": 2000,
+        "seed": 414,
+        "point_s": 0.017940776781099677,
+        "p2.5_s": 0.008787519057381007,
+        "p97.5_s": 0.028634721392463314,
+        "share_positive": 1.0
+      },
+      {
+        "comparison": "A_OLS_reference - D_followup_no_indicator",
+        "clusters (driver-race stints)": 112,
+        "replicates": 2000,
+        "seed": 414,
+        "point_s": 0.021483919793446937,
+        "p2.5_s": 0.013093533344596595,
+        "p97.5_s": 0.03136737300382931,
+        "share_positive": 1.0
+      },
+      {
+        "comparison": "A_OLS_reference - B_candidate",
+        "clusters (driver-race stints)": 112,
+        "replicates": 2000,
+        "seed": 414,
+        "point_s": 0.01697876890790484,
+        "p2.5_s": 0.007101034394582934,
+        "p97.5_s": 0.02748674786282444,
+        "share_positive": 0.9995
+      }
+    ]
+  },
+  "shap": {
+    "model_explained": "B_candidate",
+    "explainer": "shap.LinearExplainer on the fitted LinearRegression",
+    "masker": "shap.maskers.Independent",
+    "background": "all 5,772 training rows (rounds 1-7), transformed by the train-fitted imputer/scaler/one-hot",
+    "explained_sample": "all 1,808 validation rows",
+    "units": "seconds of predicted next_lap_s",
+    "base_value_s": 86.7343023215523,
+    "max_reconstruction_error_s": 1.4210854715202004e-14,
+    "max_diff_vs_manual_w(x-mean)_s": 0.0,
+    "one_hot_aggregation": "contributions of one-hot columns summed per original input (exact: model is additive)",
+    "local_pair_id": "2026-R9-23-L7"
+  },
+  "versions": {
+    "python": "3.11.9",
+    "numpy": "2.4.6",
+    "pandas": "3.1.1",
+    "sklearn": "1.9.1",
+    "shap": "0.51.0",
+    "matplotlib": "3.11.2"
+  },
+  "sha256": {
+    "train_clean_v1.csv": "43544f38cc9ef32b44886e6751e03522601265160086fe3a4956f04b87bd5c13",
+    "validation_clean_v1.csv": "b19efb6a908af12a5d2c6bdde29aa40984295e62ce0f187a201b579278db7ee8",
+    "nextlap_reference_v1.py": "f6c58925cd4a477bf3e1a5a2b3968e67df3a1cffabecee9e89701c3ac2d5f994",
+    "snapshots": {
+      "data/race_2026_r01_laps_v2.csv": "e6292b2211a33412c3441b5b1a03c8cf4f84d908c8021483bac6ff9095c9fa28",
+      "data/race_2026_r02_laps_v2.csv": "60d956fed5b9f12dff47374299189924a6168abecb568c64816516dc5fcca8e6",
+      "data/race_2026_r03_laps_v2.csv": "13254ed99f2b0c052f07594ae234454344b94e613ab7026943c2654f5364ad47",
+      "data/race_2026_r04_laps_v2.csv": "51d246a6b211caf3214b5b8f6441e1135c3c96ebf85d0175b61ccdfa8595d0cf",
+      "data/race_2026_r05_laps_v2.csv": "8dee2889082e8eb47334be3aeba80185fbeec3806316aa768dd19d7b60708954",
+      "data/race_2026_r06_laps_v2.csv": "6c97295cdfb50279a6453ad851cabf5d81521d7aefeeccae8f1a0bc0c91643e8",
+      "data/race_2026_r07_laps_v2.csv": "08b81551a5bc33ef878e9886f65989f5f6bcd71d7e564c0f525b1a4e7412d61a",
+      "data/race_2026_r08_laps_v2.csv": "7bb28d76eb4ce26038934c79aa31d2f89683f77928a675f53f26e3d912351f50",
+      "data/race_2026_r09_laps_v2.csv": "6f92af1d51b9ec461a31bb045c431b3f2129757447987aa2e16f9e2d11d1c576"
+    }
+  }
+}

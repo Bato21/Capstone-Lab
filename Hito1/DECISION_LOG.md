@@ -59,3 +59,14 @@ Tool: Claude Code (Anthropic, Claude Opus 5.5), used by Baptiste.
 ## Blockers for Ángel
 
 None.
+
+## Revisions after the Hito 1 instructor feedback (added 2026-11-17)
+
+Hito 1 was graded 97/100 (C3.1 6/8, C4.4 4/5, all other components full). The entries above are kept as submitted; this section records what we changed in `HITO1.md` in response. No code, output, threshold or number changed. The graded version is the `Hito1` tag and release.
+
+| Feedback | What we changed | Where |
+| --- | --- | --- |
+| C3.1: "last three clean laps" and "window 3, same as `recent_mean_s`" can give different histories when an invalid lap occurs; specify the convention and show one worked history. | Convention stated: the window is the last 3 laps of the stint (t−2…t), the same as `recent_mean_s`; a non-clean lap is left out and not replaced by an earlier clean lap. Worked history added for `2026-R8-1-L28` (std 0.145 s from 2 clean laps; the other reading would give 0.294 s). The two readings differ on 111 of 1,808 validation rows. The Hito 2 code checks the convention by rebuilding `recent_mean_s` / `recent_count` exactly on every row. | `HITO1.md` section 3; `Hito2/outputs/history_convention.csv`, `history_convention_example.csv` |
+| C3.1: the rationale motivates greater dispersion but does not say how the variable could correct the point prediction beyond the reference. | Expected mechanism rewritten as a bounded hypothesis: after a one-off slow lap, `current_lap_s` and `recent_mean_s` overstate the next lap; a negative coefficient on `recent_std_s` pulls the prediction back. Bounds: an additive, direction-blind shift in OLS, so a small gain concentrated after large one-lap deviations is expected, and losses that first appear on lap t+1 cannot be anticipated. Written after the Hito 2 results were known, and disclosed as such. | `HITO1.md` section 3 |
+| C4.4: a gain below 0.01 s does not refute the broader claim that variability may contain information. | Check 4 renamed "support rule". The 0.01 s threshold is kept; an outcome below it is now described as "does not meet the predeclared improvement criterion", not as a contradiction of the hypothesis. | `HITO1.md` section 4, check 4 |
+| For Hito 2: check that the implemented histories match the stated convention and keep the same `pair_id` set across comparisons. | Both checked in Hito 2: convention check (`checks.csv`, "history convention") and check 2 (same 1,808 `pair_id`s, SHA-256 equal to Hito 1). | `Hito2/outputs/checks.csv` |
