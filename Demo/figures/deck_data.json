@@ -1,0 +1,114 @@
+{
+  "source": "Hito2/outputs (commit tagged Hito2)",
+  "mae": {
+    "A": {
+      "all_validation": 0.38671,
+      "R8": 0.37357,
+      "R9": 0.40558
+    },
+    "B": {
+      "all_validation": 0.36973,
+      "R8": 0.35879,
+      "R9": 0.38544
+    },
+    "C": {
+      "all_validation": 0.38767,
+      "R8": 0.37163,
+      "R9": 0.41071
+    },
+    "D": {
+      "all_validation": 0.36522,
+      "R8": 0.3576,
+      "R9": 0.37617
+    }
+  },
+  "c_minus_b": {
+    "all_validation": 0.01794,
+    "R8": 0.01284,
+    "R9": 0.02528
+  },
+  "concentration": {
+    "0": 0.0179,
+    "10": 0.0116,
+    "50": 0.001,
+    "100": -0.0077
+  },
+  "top50_share": 0.945,
+  "history": {
+    "full (2-3 clean laps)": {
+      "A": 0.386,
+      "C": 0.383,
+      "B": 0.362,
+      "D": 0.361
+    },
+    "short (1 clean lap)": {
+      "A": 0.396,
+      "C": 0.445,
+      "B": 0.453,
+      "D": 0.416
+    }
+  },
+  "window_example": [
+    {
+      "lap": 23,
+      "time": 72.148,
+      "clean": true,
+      "in_window": false,
+      "used": false,
+      "role": ""
+    },
+    {
+      "lap": 24,
+      "time": 78.463,
+      "clean": false,
+      "in_window": false,
+      "used": false,
+      "role": ""
+    },
+    {
+      "lap": 25,
+      "time": 96.995,
+      "clean": false,
+      "in_window": false,
+      "used": false,
+      "role": ""
+    },
+    {
+      "lap": 26,
+      "time": 84.972,
+      "clean": false,
+      "in_window": true,
+      "used": false,
+      "role": ""
+    },
+    {
+      "lap": 27,
+      "time": 71.773,
+      "clean": true,
+      "in_window": true,
+      "used": true,
+      "role": ""
+    },
+    {
+      "lap": 28,
+      "time": 71.568,
+      "clean": true,
+      "in_window": true,
+      "used": true,
+      "role": "t"
+    },
+    {
+      "lap": 29,
+      "time": 71.843,
+      "clean": true,
+      "in_window": false,
+      "used": false,
+      "role": "t+1 (target, never used)"
+    }
+  ],
+  "shap_global_mean_abs": {
+    "recent_mean_s": 7.405,
+    "current_lap_s": 4.273,
+    "recent_std_s": 0.149
+  }
+}
