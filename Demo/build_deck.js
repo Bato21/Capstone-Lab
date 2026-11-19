@@ -5,7 +5,7 @@
 //
 // Inputs (nothing is typed by hand twice):
 //   figures/deck_data.json, figures/*.png   written by make_figures.py from Hito2/outputs
-//   PITCH.md                                spoken text -> speaker notes of each slide
+//   SCRIPT.md                               spoken text -> speaker notes of each slide
 // Run from the repository root (pptxgenjs is installed outside the repository):
 //   .venv/Scripts/python Demo/make_figures.py
 //   NODE_PATH=<folder with node_modules> APPLY_THEME=<path to apply_theme.js> node Demo/build_deck.js
@@ -18,16 +18,18 @@ const HERE = __dirname;
 const D = JSON.parse(fs.readFileSync(path.join(HERE, "figures", "deck_data.json"), "utf8"));
 const OUT = path.join(HERE, "NextLap_Demo_Team1.pptx");
 
-// ---- Speaker notes: the quoted lines and "Must say" of each "## Slide N" block in PITCH.md ----
-const pitch = fs.readFileSync(path.join(HERE, "PITCH.md"), "utf8").replace(/\r/g, "");
+// ---- Speaker notes: the quoted lines, "Must say" and "Handover" of each "## Slide N" block in SCRIPT.md ----
+const pitch = fs.readFileSync(path.join(HERE, "SCRIPT.md"), "utf8").replace(/\r/g, "");
 const NOTES = {};
 for (const block of pitch.split(/^## Slide /m).slice(1)) {
   const n = parseInt(block, 10);
   const head = block.split("\n")[0];                       // "2 · B · What changed in the model?"
   const who = head.includes("· V ·") ? "VICENTE" : "BAPTISTE";
   const must = (block.match(/^\*\*Must say:\*\* (.*)$/m) || [, ""])[1];
+  const hand = (block.match(/^\*\*Handover:\*\* (.*)$/m) || [, ""])[1];
   const said = block.split("\n").filter(l => l.startsWith("> ")).map(l => l.slice(2)).join(" ");
-  NOTES[n] = { who, text: `${who}\n\n${said}` + (must ? `\n\nMust say: ${must}` : "") };
+  NOTES[n] = { who, text: `${who}\n\n${said}` + (must ? `\n\nMust say: ${must}` : "") +
+    (hand ? `\n\nHandover: ${hand}` : "") };
 }
 
 // ---- Theme: the template's navy, off-white and teal ------------------------------------------
@@ -422,6 +424,22 @@ const src = (s, t) => text(s, `Source: ${t}`, { x: 0.77, y: 6.55, w: 11, h: 0.28
   ], { y: 2.75, colW: [4.3, 7.45], fontSize: 14, rowH: 0.5 });
   src(s, "Hito2/DECISION_LOG.md (Feedback received), Hito1/DECISION_LOG.md");
   s.addNotes("Backup for questions on the Hito 1 feedback.");
+}
+{
+  const s = backup("What this evidence does not show", "Each open question, what we can say, and the check that would answer it.");
+  const h = D.history["short (1 clean lap)"];
+  table(s, [
+    ["Question", "What we can say now", "Check that would answer it"],
+    ["Other races or tracks", "Not shown: two races, also used to choose", "Same A/B/C comparison on new races, same rule"],
+    ["Live use on the pit wall", "Not shown: only clean laps, chosen after the fact", "Score every lap, without the clean-pair filter"],
+    ["Other model families", "Not tested: OLS only, to isolate one change", "The same matched-control design"],
+    ["Does variability cause slow laps?", "Not claimed: OLS and SHAP show associations", "Outside what lap timing can show"],
+    ["Laps after a pit stop", `Worse than the reference: ${f3(h.B)} vs ${f3(h.A)} s (n = 148)`, "Fallback to the reference, rule written first"],
+    ["Sudden losses (Albon, lap 7)", "Invisible to lap history: 8.25 s miss", "A traffic signal at the end of lap t"],
+    ["Reserved final races", "Never accessed", "Run by the instructor"],
+  ], { y: 2.75, colW: [3.2, 4.6, 3.95], fontSize: 14, rowH: 0.43 });
+  src(s, "Hito2/HITO2.md §8, slices.csv, inspected_cases.csv");
+  s.addNotes("Backup for questions beyond the evidence. Formula: we didn't test that; what our evidence shows is ...; the check that would answer it is ...");
 }
 
 (async () => {

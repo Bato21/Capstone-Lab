@@ -4,11 +4,14 @@ Defence of the Hito 2 decisions, findings and limits: 7 minutes of presentation 
 
 | File | Role |
 | --- | --- |
-| `NextLap_Demo_Team1.pptx` | The deck, built on the official Demo Day slide template (the same six questions and timings): 6 slides for the talk plus 5 backup slides for questions. Speaker notes hold the spoken text. |
+| `NextLap_Demo_Team1.pptx` | The deck, built on the official Demo Day slide template (the same six questions and timings): 6 slides for the talk plus 6 backup slides for questions. Speaker notes hold the spoken text, the "must say" phrases and the handover to the partner. |
 | `NextLap_Demo_Team1.pdf` | Offline copy of the deck, exported from PowerPoint. |
-| [PITCH.md](PITCH.md) | Script: who says what on each slide, timings, "must say" phrases, who answers which question, and the handover cues. |
+| [SCRIPT.md](SCRIPT.md) | The script: who says what on each slide, timings, "must say" phrases, handover cues, the rehearsal plan and short versions if running late. |
+| [PREP_GUIDE.md](PREP_GUIDE.md) | Preparation for the questions: the numbers to know, each idea explained plainly and precisely, how to answer, what we must not claim and what to say instead, a question bank with an owner for each topic, and the checklist for the day. |
 | `make_figures.py` | Writes `figures/albon_incident.png`, `figures/shap_waterfall.png` and `figures/deck_data.json` from `Hito2/outputs/` and the released R9 snapshot. |
-| `build_deck.js` | Builds the deck from `figures/` and `PITCH.md` (tables and bar charts are native PowerPoint objects fed by `deck_data.json`). |
+| `build_deck.js` | Builds the deck from `figures/` and `SCRIPT.md` (tables and bar charts are native PowerPoint objects fed by `deck_data.json`). |
+
+Backup slides: 7 Albon's incident · 8 concentration of the gain and the short-history laps · 9 the checks written in Hito 1 · 10 all runs and the bootstrap · 11 Hito 1 feedback · 12 what this evidence does not show.
 
 Every number in the deck comes from `Hito2/outputs/` at the commit tagged `Hito2`; no result was recomputed or tuned for the demo.
 
