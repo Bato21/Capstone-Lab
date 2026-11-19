@@ -77,8 +77,15 @@ function layout(title, dark) {
       { line: { x: 0.76, y: 6.91, w: 11.8, h: 0, line: { color: dark ? HEX.muted : HEX.rule, width: 0.75 } } },
       { text: { text: FOOTER, options: { x: 0.76, y: 7.03, w: 9, h: 0.21, fontSize: 10, color: sub, margin: 0 } } },
     ],
-    slideNumber: { x: 11.7, y: 7.0, w: 0.86, h: 0.26, fontSize: 10, color: dark ? MINT : HEX.muted, align: "right" },
   });
+}
+// Template numbers its slides "01", "02"…; a slideNumber field cannot pad, so each slide gets a text box.
+let slideCount = 0;
+function addSlide(masterName, sectionTitle) {
+  const s = pres.addSlide({ masterName, sectionTitle });
+  s.addText(String(++slideCount).padStart(2, "0"), { x: 11.7, y: 7.03, w: 0.86, h: 0.21, fontSize: 10, margin: 0,
+    align: "right", color: masterName === "DARK" ? MINT : HEX.muted, isTextBox: true, objectName: `number_${slideCount}` });
+  return s;
 }
 layout("LIGHT", false);
 layout("DARK", true);
@@ -152,7 +159,7 @@ const SEC = "Presentation (7 min)";
 
 // ---- 1. Title (0:00-0:45) ----------------------------------------------------------------------
 {
-  const s = pres.addSlide({ masterName: "DARK", sectionTitle: SEC });
+  const s = addSlide("DARK", SEC);
   slot(s, "0:00–0:45", 1, true);
   s.addText("NextLap: is the next lap off?", { placeholder: "title" });
   s.addText("A next-lap estimate helps a race engineer spot a lap slower than expected, and check why.",
@@ -176,7 +183,7 @@ const SEC = "Presentation (7 min)";
 
 // ---- 2. What changed in the model? (0:45-1:45) --------------------------------------------------
 {
-  const s = pres.addSlide({ masterName: "LIGHT", sectionTitle: SEC });
+  const s = addSlide("LIGHT", SEC);
   slot(s, "0:45–1:45", 2);
   s.addText("What changed in the model?", { placeholder: "title" });
   s.addText("One new input: how erratic the driver's last three laps were (recent_std_s).", { placeholder: "body" });
@@ -215,7 +222,7 @@ const SEC = "Presentation (7 min)";
 
 // ---- 3. What did the comparison show? (1:45-3:25) -----------------------------------------------
 {
-  const s = pres.addSlide({ masterName: "LIGHT", sectionTitle: SEC });
+  const s = addSlide("LIGHT", SEC);
   slot(s, "1:45–3:25", 3);
   s.addText("What did the comparison show?", { placeholder: "title" });
   s.addText("The candidate missed by 0.018 s less than its matched control, on the same 1,808 laps.",
@@ -247,7 +254,7 @@ const SEC = "Presentation (7 min)";
 
 // ---- 4. Where does the model struggle? (3:25-4:40) ----------------------------------------------
 {
-  const s = pres.addSlide({ masterName: "LIGHT", sectionTitle: SEC });
+  const s = addSlide("LIGHT", SEC);
   slot(s, "3:25–4:40", 4);
   s.addText("Where does the model struggle?", { placeholder: "title" });
   s.addText("Both races agree. What remains: sudden losses, and laps right after a pit stop.", { placeholder: "body" });
@@ -281,7 +288,7 @@ const SEC = "Presentation (7 min)";
 
 // ---- 5. What drove a prediction? (4:40-6:00) ----------------------------------------------------
 {
-  const s = pres.addSlide({ masterName: "LIGHT", sectionTitle: SEC });
+  const s = addSlide("LIGHT", SEC);
   slot(s, "4:40–6:00", 5);
   s.addText("What drove a prediction?", { placeholder: "title" });
   s.addText("SHAP on candidate B, lap 2026-R9-23-L7: the pieces add up to its 99.12 s prediction.", { placeholder: "body" });
@@ -307,7 +314,7 @@ const SEC = "Presentation (7 min)";
 
 // ---- 6. What decision can you defend? (6:00-7:00) -----------------------------------------------
 {
-  const s = pres.addSlide({ masterName: "DARK", sectionTitle: SEC });
+  const s = addSlide("DARK", SEC);
   slot(s, "6:00–7:00", 6, true);
   s.addText("What decision can you defend?", { placeholder: "title" });
   s.addText("Keep the new input: it beat its matched control on the same laps, in both races.", { placeholder: "body" });
@@ -327,7 +334,7 @@ const SEC = "Presentation (7 min)";
 // =============================================================================================
 pres.addSection({ title: "Backup (questions)" });
 const backup = (title, sub) => {
-  const s = pres.addSlide({ masterName: "LIGHT", sectionTitle: "Backup (questions)" });
+  const s = addSlide("LIGHT", "Backup (questions)");
   slot(s, "BACKUP", "QUESTIONS");
   s.addText(title, { placeholder: "title" });
   s.addText(sub, { placeholder: "body" });
@@ -352,7 +359,12 @@ const src = (s, t) => text(s, `Source: ${t}`, { x: 0.77, y: 6.55, w: 11, h: 0.28
       { text: small, options: { fontSize: 13 } }], { x: 7.2, y: y + 0.12, w: 5.2, h: 1.45 });
   });
   src(s, "Hito2/outputs/inspected_cases.csv, validation_predictions.csv");
-  s.addNotes("Backup for questions on the inspected case.");
+  s.addNotes("BACKUP · answered by BAPTISTE (errors and the case)\n\n" +
+    "Why this lap? Picked by a fixed rule in the code: the row where the new input moved the prediction the most.\n\n" +
+    "Lap 7 (L6 row): 8.25 s, the largest error. Green flag, accurate lap, 9 s slower than the field. We don't know why; " +
+    "no lap history can see it coming.\n\n" +
+    "Lap 8 (L7 row): control 102.110 believed the slow lap; spread 4.67 s, the highest in validation, pulled the " +
+    "candidate to 99.121; real 97.882. Error 4.228 to 1.239 s.");
 }
 {
   const s = backup("A concentrated gain, and the pit-stop laps", "Where the +0.018 s comes from, and the slice where the candidate loses.");
@@ -376,7 +388,11 @@ const src = (s, t) => text(s, `Source: ${t}`, { x: 0.77, y: 6.55, w: 11, h: 0.28
     valAxisMinVal: 0.3, valAxisMaxVal: 0.48, valAxisMajorUnit: 0.05, valAxisLabelFormatCode: "0.00",
     ...chartText, objectName: nm("chart_short_history") });
   src(s, "Hito2/outputs/gain_concentration.csv, slices.csv");
-  s.addNotes("Backup for questions on the size of the gain or the short-history rows.");
+  s.addNotes("BACKUP · left chart VICENTE (concentration), right chart BAPTISTE (short history)\n\n" +
+    "Left: 50 of 1,808 laps carry 94.5% of the gain; without them +0.001 s, without the top 100 −0.008 s. " +
+    "Candidate better than control on only 955 laps (53%). Real on those laps, and concentrated.\n\n" +
+    "Right: 148 laps with one clean lap (after a pit stop or a yellow). Candidate 0.453 s vs reference 0.396 s. " +
+    "Trial D (flag removed) reached 0.416 s; its rule, written first, was 0.401 s or less, so it failed and we kept B.");
 }
 {
   const s = backup("Checks written in Hito 1, and what happened", "All written before the code; all saved in checks.csv.");
@@ -392,7 +408,10 @@ const src = (s, t) => text(s, `Source: ${t}`, { x: 0.77, y: 6.55, w: 11, h: 0.28
     ["D. Follow-up", "Short MAE ≤ 0.401; A − D ≥ 0.01, ≥ 0 per race", `Short MAE ${f3(h.D)} s`, "Failed; kept B"],
   ], { y: 2.75, colW: [2.75, 3.75, 3.6, 1.65], fontSize: 14, rowH: 0.42 });
   src(s, "Hito2/outputs/checks.csv, followup_D_table.csv");
-  s.addNotes("Backup for questions on leakage, same rows or the decision rule.");
+  s.addNotes("BACKUP · checks 1–2 and history BAPTISTE, checks 3–5 and D VICENTE\n\n" +
+    "Leakage: the last lap used ends at t on all 7,580 rows; a second implementation that sees only finished laps " +
+    "gives identical values. Same rows: identical 1,808 pair_ids, hash equal to Hito 1.\n\n" +
+    "Rule: written in Hito 1 before any code; C − B ≥ 0.01 s overall and ≥ 0 in each race. Met.");
 }
 {
   const s = backup("All runs on the same 1,808 validation laps", "All OLS from make_model, train R1–R7, same pipeline, seed 414.");
@@ -411,7 +430,11 @@ const src = (s, t) => text(s, `Source: ${t}`, { x: 0.77, y: 6.55, w: 11, h: 0.28
     { text: "B adds two columns. C keeps short_history and drops only recent_std_s, so C − B isolates the spread." }],
     { x: 0.77, y: 5.65, w: 11.7, h: 0.7, fontSize: 15 });
   src(s, "Hito2/outputs/comparison_metrics.csv, bootstrap.csv");
-  s.addNotes("Backup for questions on the numbers of every run, the bootstrap, or why C and not A is the control.");
+  s.addNotes("BACKUP · answered by VICENTE (the comparison)\n\n" +
+    "Why C, not A: B adds two columns; C keeps the flag and drops only the spread, so C − B measures the spread alone.\n\n" +
+    "Why C is worse than A (0.388 vs 0.387): C is A plus the flag; the flag alone does not help.\n\n" +
+    "Bootstrap: whole stints, because laps in a stint are not independent. Never say \"significant\"; it describes " +
+    "these two races only.");
 }
 {
   const s = backup("Hito 1 feedback and what we changed", "Answered in Hito 2; HITO1.md revised and the revision disclosed.");
@@ -423,7 +446,10 @@ const src = (s, t) => text(s, `Source: ${t}`, { x: 0.77, y: 6.55, w: 11, h: 0.28
     ["For Hito 2: convention and same pair_ids", "Both checked (history convention; check 2, hash = Hito 1)."],
   ], { y: 2.75, colW: [4.3, 7.45], fontSize: 14, rowH: 0.5 });
   src(s, "Hito2/DECISION_LOG.md (Feedback received), Hito1/DECISION_LOG.md");
-  s.addNotes("Backup for questions on the Hito 1 feedback.");
+  s.addNotes("BACKUP · window convention BAPTISTE, threshold VICENTE\n\n" +
+    "Window: last 3 laps of the stint, the recent_mean_s window; non-clean laps left out, not replaced. Reaching back " +
+    "would change 111 of 1,808 rows.\n\n" +
+    "Threshold 0.01 s: our own judgement in Hito 1, before any result. Kept after the feedback.");
 }
 {
   const s = backup("What this evidence does not show", "Each open question, what we can say, and the check that would answer it.");
@@ -439,7 +465,10 @@ const src = (s, t) => text(s, `Source: ${t}`, { x: 0.77, y: 6.55, w: 11, h: 0.28
     ["Reserved final races", "Never accessed", "Run by the instructor"],
   ], { y: 2.75, colW: [3.2, 4.6, 3.95], fontSize: 14, rowH: 0.43 });
   src(s, "Hito2/HITO2.md §8, slices.csv, inspected_cases.csv");
-  s.addNotes("Backup for questions beyond the evidence. Formula: we didn't test that; what our evidence shows is ...; the check that would answer it is ...");
+  s.addNotes("BACKUP · whoever owns the topic answers\n\n" +
+    "Formula: \"We didn't test that. What our evidence shows is ___. The check that would answer it is ___.\"\n\n" +
+    "Never: a number for the fallback, a cause for Albon's loss, \"significant\", a percentage accuracy, " +
+    "or a promise of what a suggested idea would show.");
 }
 
 (async () => {

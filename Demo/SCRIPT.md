@@ -1,6 +1,6 @@
 # NextLap Demo Day script · Group 1 · Friday 20 November 2026
 
-Slot (official programme): **11:25–11:32 presentation (7 min), 11:32–11:37 questions (5 min)**, Lab 033, RESB campus. Group 1 is the first team after the opening (11:10–11:25). Both partners answer the jury.
+Slot (official programme): **11:25–11:32 presentation (7 min), 11:32–11:37 questions (5 min), 11:37–11:40 transition** (reserved for recording feedback and handing over to Group 2), Lab 033, RESB campus. Group 1 is the first team after the opening (11:10–11:25), so the laptop must be connected and tested before 11:10. Both partners answer the jury.
 
 - Deck: `NextLap_Demo_Team1.pptx` (offline copy `NextLap_Demo_Team1.pdf`): the six slides of the official Demo Day template, then 6 backup slides for questions. The speaker notes of slides 1–6 are generated from this file.
 - Split: **Vicente** (V) presents slides 1, 3 and 5 (the use, the result, the SHAP explanation). **Baptiste** (B) presents slides 2, 4 and 6 (the new input and its checks, where the model struggles, the decision).
@@ -83,7 +83,7 @@ About 770 spoken words: 6 min 25 s at 120 words per minute, 5 min 30 s at 140. T
 - Slide 3: drop the bootstrap sentence ("If we resample whole stints…").
 - Slide 5: drop the global sentence ("Over all validation laps…") and go straight to "SHAP explains the output; the gain is measured by the comparison."
 
-**On the day:** whoever is not speaking clicks for the speaker, or each presenter clicks their own slides; agree which before the session. During the questions, whoever is not answering writes down the jury's feedback word for word (it goes to `Final/DECISION_LOG.md`, "Feedback received").
+**On the day:** whoever is not speaking clicks for the speaker, or each presenter clicks their own slides; agree which before the session. During the questions, whoever is not answering writes down the jury's feedback word for word. In the 11:37–11:40 transition, unplug first, then together complete the notes while they are fresh: who said it, the exact words, and which slide it was about. It goes to `Final/DECISION_LOG.md`, "Feedback received", and becomes the Demo Day priority of the final report.
 
 ## Plain-language glossary
 

@@ -2,7 +2,7 @@
 
 For the 5 minutes of questions (11:32–11:37). The closeout guide asks that **both partners can explain a decision, show its supporting evidence and name a limitation**, and that we use terms a guest outside machine learning can follow. The jury answers are individual, so each of us must be able to stand alone on our own part.
 
-Every number below is in `Hito2/outputs/` (commit tagged `Hito2`) unless the row says otherwise. Slide numbers refer to `NextLap_Demo_Team1.pptx` (1–6 the talk, 7–12 backup).
+Every number below is in `Hito2/outputs/` (commit tagged `Hito2`) unless the row says otherwise. Slide numbers refer to `NextLap_Demo_Team1.pptx` (1–6 the talk, 7–12 backup); the speaker notes of each backup slide say who answers and the short answer.
 
 Contents: [1. The project in 30 seconds](#1-the-project-in-30-seconds) · [2. Numbers to know by heart](#2-numbers-to-know-by-heart) · [3. Understand each idea](#3-understand-each-idea) · [4. How to answer](#4-how-to-answer) · [5. What not to answer, and what to say instead](#5-what-not-to-answer-and-what-to-say-instead) · [6. Question bank](#6-question-bank) · [7. On the day](#7-on-the-day)
 
@@ -16,20 +16,20 @@ Both of us should be able to say this without the slides:
 
 ## 2. Numbers to know by heart
 
-| What | Number | Slide |
+| What | Number | Slide (talk · backup) |
 | --- | --- | --- |
-| Validation laps (same rows for every model) | 1,808 (Austria R8 1,066 · Silverstone R9 742) | 10 |
-| Training laps | 5,772 (rounds 1–7) | 10 |
-| Average miss: reference A / control C / candidate B | 0.387 / 0.388 / **0.370** s | 10 |
-| Control − candidate | **+0.018 s** (Austria +0.013, Silverstone +0.025) | 10 |
-| Rule set in Hito 1 | ≥ 0.01 s better overall **and** not worse in either race | 9 |
-| Stint bootstrap, 95% interval | +0.009 to +0.029 s (these two races only) | 10 |
-| Concentration | 50 laps (2.8%) carry 94.5% of the gain; without them +0.001 s; without the top 100, −0.008 s | 8 |
+| Validation laps (same rows for every model) | 1,808 (Austria R8 1,066 · Silverstone R9 742) | 2, 4 · 10 |
+| Training laps | 5,772 (rounds 1–7) | 2 |
+| Average miss: reference A / control C / candidate B | 0.387 / 0.388 / **0.370** s | 3 · 10 |
+| Control − candidate | **+0.018 s** (Austria +0.013, Silverstone +0.025) | 3, 4 · 10 |
+| Rule set in Hito 1 | ≥ 0.01 s better overall **and** not worse in either race | 3 · 9 |
+| Stint bootstrap, 95% interval | +0.009 to +0.029 s (these two races only) | 3 · 10 |
+| Concentration | 50 laps (2.8%) carry 94.5% of the gain; without them +0.001 s; without the top 100, −0.008 s | 3 · 8 |
 | Candidate better than control on | 955 of 1,808 laps (53%) | – |
-| Short history (1 clean lap, mostly after a pit stop or a yellow) | 148 laps: candidate 0.453 s vs reference 0.396 s | 8 |
-| Trial D (flag removed), short-history MAE | 0.416 s, rule was ≤ 0.401 s → **failed**, kept B | 8, 9 |
-| Albon `2026-R9-23-L7` | real 97.882 s · candidate 99.121 s (error 1.239 s) · control 102.110 s (error 4.228 s) | 7 |
-| Largest error in validation, `2026-R9-23-L6` | 8.25 s (Albon's 9 s loss on lap 7 itself) | 7 |
+| Short history (1 clean lap, mostly after a pit stop or a yellow) | 148 laps: candidate 0.453 s vs reference 0.396 s | 4 · 8 |
+| Trial D (flag removed), short-history MAE | 0.416 s, rule was ≤ 0.401 s → **failed**, kept B | 6 · 8, 9 |
+| Albon `2026-R9-23-L7` | real 97.882 s · candidate 99.121 s (error 1.239 s) · control 102.110 s (error 4.228 s) | 4 · 7 |
+| Largest error in validation, `2026-R9-23-L6` | 8.25 s (Albon's 9 s loss on lap 7 itself) | 4 · 7 |
 | SHAP on Albon's lap | base 86.73 + 8.18 + 6.67 − 2.47 + 0.003 = **99.12 s** | 5 |
 | Global mean \|SHAP\| | recent mean 7.41 s · current lap 4.27 s · spread 0.15 s (3rd) | 5 |
 | Short-history fill | training median 0.258 s, plus the `short_history` flag | – |
@@ -227,7 +227,7 @@ Some questions invite a claim we cannot support. Answering them with a guess los
 
 **During the 7 minutes:** watch the checkpoints in the [script](SCRIPT.md#rehearsal); if late, use the short versions.
 
-**During the 5 minutes of questions:** the partner not answering writes the jury's feedback word for word, with who said it. Right after, copy it into `Final/DECISION_LOG.md` ("Feedback received"): it is the Demo Day priority for the final report.
+**During the 5 minutes of questions:** the partner not answering writes the jury's feedback word for word, with who said it. In the 11:37–11:40 transition, unplug, then complete the notes together. The same day, copy them into `Final/DECISION_LOG.md` ("Feedback received"): it is the Demo Day priority for the final report.
 
 **Spanish glossary, if a question comes in Spanish**
 

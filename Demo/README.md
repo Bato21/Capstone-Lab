@@ -4,7 +4,7 @@ Defence of the Hito 2 decisions, findings and limits: 7 minutes of presentation 
 
 | File | Role |
 | --- | --- |
-| `NextLap_Demo_Team1.pptx` | The deck, built on the official Demo Day slide template (the same six questions and timings): 6 slides for the talk plus 6 backup slides for questions. Speaker notes hold the spoken text, the "must say" phrases and the handover to the partner. |
+| `NextLap_Demo_Team1.pptx` | The deck, built on the official Demo Day slide template (the same six questions and timings): 6 slides for the talk plus 6 backup slides for questions. Speaker notes of slides 1–6 hold the spoken text, the "must say" phrases and the handover to the partner; notes of slides 7–12 say who answers and give the short answer. |
 | `NextLap_Demo_Team1.pdf` | Offline copy of the deck, exported from PowerPoint. |
 | [SCRIPT.md](SCRIPT.md) | The script: who says what on each slide, timings, "must say" phrases, handover cues, the rehearsal plan and short versions if running late. |
 | [PREP_GUIDE.md](PREP_GUIDE.md) | Preparation for the questions: the numbers to know, each idea explained plainly and precisely, how to answer, what we must not claim and what to say instead, a question bank with an owner for each topic, and the checklist for the day. |

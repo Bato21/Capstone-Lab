@@ -68,7 +68,7 @@ ax.bar(0, base - floor, bottom=floor, color=COL['A'], width=0.62)
 ax.text(0, base + 0.5, f'{base:.2f}', ha='center', fontsize=14)
 for k, (name, v) in enumerate(steps, start=1):
     ax.bar(k, v, bottom=level, color=COL['up'] if v > 0 else COL['down'], width=0.62)
-    ax.text(k, max(level, level + v) + 0.5, f'{v:+.2f}' if abs(v) >= 0.01 else f'{v:+.3f}', ha='center', fontsize=14)
+    ax.text(k, max(level, level + v) + 0.5, (f'{v:+.2f}' if abs(v) >= 0.01 else f'{v:+.3f}').replace('-', '−'), ha='center', fontsize=14)
     level += v
 ax.bar(len(steps) + 1, pred - floor, bottom=floor, color=COL['obs'], width=0.62)
 ax.text(len(steps) + 1, pred + 0.5, f'{pred:.2f}', ha='center', fontsize=14, weight='bold')
