@@ -1,0 +1,6 @@
+run,inputs,MAE_all_s (n=1808),MAE_R8_s (n=1066),MAE_R9_s (n=742),MAE_short_history_s (n=148),gain_vs_A_s,rule,outcome
+A_OLS_reference,six reference inputs,0.3867069503640436,0.3735705571218996,0.4055794506283637,0.39588641872085234,0.0,fixed reference,reference for every comparison
+B_candidate,six + recent_std_s + short_history,0.3697281814561388,0.3587927157890282,0.385438702212392,0.45340648074218215,0.01697876890790484,"Hito 1: C - B >= 0.01 s overall, >= 0 per race",supported; kept
+C_matched_control,six + short_history,0.38766895823723846,0.37162824215439316,0.41071397622148803,0.44545459148558025,-0.0009620078731948367,matched control of B,control; slightly worse than A
+D_followup_no_indicator,"six + recent_std_s (median fill, no indicator)",0.3652230305705967,0.35760385181667803,0.37616918225749335,0.41626125795268526,0.021483919793446937,"Hito 2: short MAE <= 0.401 s, A - D >= 0.01 s overall, >= 0 per race",failed (short MAE); B kept
+E_short_history_fallback,B; frozen A on short_history rows,0.36501968080395036,0.35973323735439,0.37261449039590616,0.39588641872085234,0.02168726956009326,"final: trial D rule, unchanged",passed; frozen final model

@@ -227,7 +227,7 @@ Some questions invite a claim we cannot support. Answering them with a guess los
 
 **During the 7 minutes:** watch the checkpoints in the [script](SCRIPT.md#rehearsal); if late, use the short versions.
 
-**During the 5 minutes of questions:** the partner not answering writes the jury's feedback word for word, with who said it. In the 11:37–11:40 transition, unplug, then complete the notes together. The same day, copy them into `Final/DECISION_LOG.md` ("Feedback received"): it is the Demo Day priority for the final report.
+**During the 5 minutes of questions:** the partner not answering writes the jury's feedback word for word, with who said it. In the 11:37–11:40 transition, unplug, then complete the notes together. The same day, copy them into `FinalReport/DECISION_LOG.md` ("Feedback received"): it is the Demo Day priority for the final report.
 
 **Spanish glossary, if a question comes in Spanish**
 

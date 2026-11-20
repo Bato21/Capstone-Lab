@@ -1,0 +1,15 @@
+{
+  "model": "E: candidate B, frozen-reference A on short_history rows; both OLS, train rounds 1-7",
+  "requests": 1808,
+  "predictions_finite": 1808,
+  "from_B": 1660,
+  "fallback_to_A_short_history": 148,
+  "of_which_no_history_laps_found": 0,
+  "other_missing_inputs_filled_by_train_medians": {},
+  "self_check": {
+    "rows": 1808,
+    "same_short_history_flags": true,
+    "max_abs_diff_vs_trial_E_s": 7.673861546209082e-13,
+    "validation_MAE_s": 0.365019680803949
+  }
+}

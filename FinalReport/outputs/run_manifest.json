@@ -1,0 +1,13 @@
+{
+  "script": "FinalReport/run_final.py",
+  "inputs_sha256": {
+    "Hito2/outputs/validation_predictions.csv": "806567c60d9bbbbfa4a46795d6e27f8659a4d9c3fc0358349b00492c41d5ee1f",
+    "Hito2/outputs/comparison_metrics.csv": "6911396f6ef3bc7cdcfe2ad49bd3dd00a4d934249b2ce3458e317f5b8a6575d4",
+    "Hito1/outputs/validation_reference_predictions.csv": "d0675643d4d0dab922379b5ceeca0d5bb22a0be79987a7227edfb8e9f4a3785b",
+    "Hito1/outputs/reference_run.json": "0df1d7f1c37b84916c60c87c09990244c791811bcdc8ec639b135fdb0eb010c4"
+  },
+  "validation_pair_id_sha256": "f453a98dc906904cba7307f7e25b67fbd9c9087df0a92a87477cf63422b76a57",
+  "short_history_rows": 148,
+  "trial_E_passed": true,
+  "frozen_final_model": "E (B with short-history fallback to A)"
+}

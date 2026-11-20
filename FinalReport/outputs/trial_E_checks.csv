@@ -1,0 +1,7 @@
+condition,n,observed,passed
+MAE(E) on short-history rows <= 0.401 s,148,0.39589 s,True
+A - E >= 0.01 s overall,1808,+0.02169 s,True
+A - E >= 0 in R8,1066,+0.01384 s,True
+A - E >= 0 in R9,742,+0.03296 s,True
+TRIAL E (all four conditions),1808,PASS -> E is frozen as the final model,True
+"same 1,808 validation pair_ids as Hito 1 (SHA-256)",1808,f453a98dc906... equals Hito 1; A equals Hito 1 predictions (max |diff| 2.8e-14 s),True
