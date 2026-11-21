@@ -11,9 +11,11 @@ Presented the Hito 2 decisions with the official Demo Day template (`Demo/NextLa
 | Vicente Rodríguez | Use (slide 1), comparison (slide 3), SHAP (slide 5) | Matched control C rather than A; keeping B after D failed |
 | Baptiste Vial | New input and checks (slide 2), errors by context (slide 4), decision (slide 6) | Window convention and availability checks; short-history limitation |
 
+The split above is how it was presented. The talk ran without problems, and the jury asked one question, which we answered; no written feedback was given.
+
 ## Feedback received
 
-The Demo Day jury had not given written feedback when we submitted; the revision answers the Hito 2 priority.
+The Demo Day jury asked one question, which we answered, and gave no written feedback; the revision answers the Hito 2 priority.
 
 | Source | Feedback (as received) | Priority? | What we changed or why we kept it |
 | --- | --- | --- | --- |
@@ -49,16 +51,22 @@ The Demo Day jury had not given written feedback when we submitted; the revision
 
 | Member | What they did and can explain | A decision they can defend, with its result or check |
 | --- | --- | --- |
-| Baptiste Vial | [ ] | [ ] |
-| Vicente Rodríguez | [ ] | [ ] |
+| Baptiste Vial | Presented slides 2, 4 and 6 at the Demo Day and defended the window convention, the availability checks and the short-history limitation. Owner of the short-history fallback follow-up declared in Hito 2 (short-history rows → frozen reference prediction, own rule written first), which became trial E. | The fallback switches on `short_history` only, which is known at the end of lap t, and returns the frozen reference rather than a refitted model. Result: short-history MAE 0.39589 s ≤ 0.401 s on the 148 rows; `short_history` equals the missing pattern of `recent_std_s` on every row (asserted in `FinalReport/run_final.py`). |
+| Vicente Rodríguez | Presented slides 1, 3 and 5 at the Demo Day and defended the matched control and keeping B after D. Built the Demo Day deck, script and question guide (`Demo/`), ran trial E (`FinalReport/run_final.py`), wrote the frozen-model script for the bonus (`FinalReport/predict.py`) and the final report. The traffic proxy he owns is still open. | Reuse trial D's rule word for word for E and freeze E only if it passed. Result: A − E = +0.02169 s overall, +0.01384 s in R8 and +0.03296 s in R9; `predict.py` reproduces E on all 1,808 rows (largest difference 7.7e-13 s). |
 
 ## AI use record (after Hito 2)
 
-[To be completed by the team.]
+Tool: Claude Code (Anthropic), used by Vicente for the Demo Day material and the final report.
 
 | Use | Adopted? | How we checked it |
 | --- | --- | --- |
-| | | |
+| Checked that the Demo Day material met the requirements: the closeout guide (7 min + 5 min, both partners explain a decision, its evidence and a limitation, terms a guest can follow, an offline copy), the official programme (our 11:25–11:37 slot) and the prompts and speaker notes of the official slide template. | Yes — added a handover line per slide, an "evidence does not show" backup slide and the offline PDF; dropped an unsupported claim it had drafted ("two dry races": we have no weather evidence). | We re-read the guide, the programme and each template note against the final slides; the talk ran in its slot without problems. |
+| Rebuilt the deck on the official template (`Demo/build_deck.js`, `Demo/make_figures.py`); the template file itself did not open in PowerPoint, so the same geometry, colours, fonts, footer, questions and timings were reproduced from its XML. | Yes | Compared the deck with the template element by element; validated the file; rendered and inspected every slide; a script matched every decimal on the slides and in the notes to `Hito2/outputs/` (none unmatched). |
+| Drafted and tuned the script (`Demo/SCRIPT.md`): one speaker per slide, "must say" phrases, handovers, and cuts from about 856 to about 770 words so each slot fits the template timings. | Yes, with edits — we said the text in our own words and kept the numbers and "must say" phrases. | Word count per slot against the template timings (about 6 min 25 s at 120 words per minute); timing checkpoints per slide; numbers checked against `Hito2/outputs/` by the same script. |
+| Drafted the question guide (`Demo/PREP_GUIDE.md`): numbers to know, each idea explained plainly and precisely, what not to claim and what to say instead, a question bank with an owner per topic. | Yes | Every number checked against `Hito2/outputs/`; the threshold answer was corrected to say the 0.01 s rule was our own judgement. We answered the jury's one question. |
+| Proposed reusing trial D's rule unchanged for trial E, and drafted `FinalReport/run_final.py`. | Yes | The rule was saved in this log before the script existed (with a private timestamped copy); the script asserts the 1,808 IDs match Hito 1, that A still equals the Hito 1 predictions and the pooled arithmetic; its A − B bootstrap reproduces the saved Hito 2 interval; two runs give byte-identical outputs. |
+| Drafted `FinalReport/predict.py`, the frozen model E in the bonus input format. | Yes | `--self-check` refits A and B on rounds 1–7 and reproduces E on all 1,808 validation rows (largest difference 7.7e-13 s); also run from shuffled request and history CSV files, with the same result. |
+| Drafted and revised the final report and this log from the saved outputs. | Yes, with edits | A script matched every decimal in the report, this log and `FinalReport/README.md` to a saved output (none unmatched); all relative links resolve and every link in the PDF opens at the submitted commit. |
 
 ## Blockers
 
